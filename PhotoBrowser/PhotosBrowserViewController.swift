@@ -63,7 +63,7 @@ class PhotosBrowserViewController: UICollectionViewController {
         let photo = photoForIndexPath(indexPath: indexPath as NSIndexPath)
         cell.activityIndicator.stopAnimating()
         cell.backgroundColor = UIColor.white
-        guard let indexPath = largerIndexPath else {
+        guard indexPath == largerIndexPath else {
             cell.imageView.image = photo.thumbnail
             return cell
         }
