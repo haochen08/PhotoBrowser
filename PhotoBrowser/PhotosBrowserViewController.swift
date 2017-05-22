@@ -10,11 +10,16 @@ import UIKit
 
 
 class PhotosBrowserViewController: UICollectionViewController {
+    
+    @IBOutlet weak var searchTextField: UITextField!
     fileprivate let reuseIdentifier = "PhotoCell"
     fileprivate var searches = [FlickrSearchResults]()
     fileprivate let flickr = Flickr()
     fileprivate let cellInsets = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
     fileprivate let itemsPerRow = 3
+    fileprivate var searchPage = 1
+    fileprivate var firstSearchItem = ""
+    fileprivate let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     fileprivate var largerIndexPath : IndexPath? {
         didSet {
             var indexPaths = [IndexPath]()
@@ -134,6 +139,41 @@ class PhotosBrowserViewController: UICollectionViewController {
     
     }
     */
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if spinner.isAnimating {
+            return
+        }
+
+        let endY = scrollView.contentSize.height - self.view.frame.height + 10.0
+        if endY > 0 && scrollView.contentOffset.y >= endY {
+            searchTextField.addSubview(spinner)
+            spinner.frame = searchTextField.bounds
+            spinner.startAnimating()
+            
+            flickr.searchFlickrForTerm(firstSearchItem, searchPage: searchPage) { (results, error) in
+                self.spinner.removeFromSuperview()
+                self.spinner.stopAnimating()
+                
+                if let error = error {
+                    print("error in searching: \(error)")
+                    return
+                }
+                
+                if let results = results {
+                    guard let index = self.searches.index(where: {$0.searchTerm == self.firstSearchItem})else {
+                        return
+                    }
+                    
+                    self.searches[index].searchResults += results.searchResults
+                    
+                    self.collectionView?.reloadData()
+                    
+                    self.searchPage += 1
+                }
+            }
+        }
+    }
 
 }
 
@@ -145,13 +185,17 @@ private extension PhotosBrowserViewController {
 
 extension PhotosBrowserViewController : UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        if firstSearchItem.isEmpty {
+            firstSearchItem = textField.text!
+        }
+        
         textField.addSubview(spinner)
         spinner.frame = textField.bounds
         spinner.startAnimating()
         
-        flickr.searchFlickrForTerm(textField.text!) { (results, error) in
-            spinner.removeFromSuperview()
+        flickr.searchFlickrForTerm(textField.text!, searchPage: searchPage) { (results, error) in
+            self.spinner.removeFromSuperview()
+            self.spinner.stopAnimating()
             
             if let error = error {
                 print("error in searching: \(error)")
@@ -162,6 +206,8 @@ extension PhotosBrowserViewController : UITextFieldDelegate {
                 self.searches.insert(results, at: 0)
                 
                 self.collectionView?.reloadData()
+                
+                self.searchPage += 1
             }
         }
         
