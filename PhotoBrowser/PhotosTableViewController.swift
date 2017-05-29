@@ -18,6 +18,15 @@ class PhotosTableViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet var tableView: UITableView!
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        // Key code
+        // It seems the value here does not matter
+        tableView.estimatedRowHeight = 30
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return searches.count
     }
@@ -29,6 +38,8 @@ class PhotosTableViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as! PhotoTableViewCell
         cell.thumbnail.image = searches[indexPath.section].searchResults[indexPath.row].thumbnail
+        let rand_index = arc4random_uniform(4)
+        cell.comment.text = labelText[Int(rand_index)]
         return cell
     }
 }
@@ -54,8 +65,6 @@ extension PhotosTableViewController : UITextFieldDelegate {
                 self.searches.insert(results, at: 0)
                 
                 self.tableView?.reloadData()
-                
-                //self.searchPage += 1
             }
         }
         

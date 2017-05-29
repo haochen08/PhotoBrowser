@@ -11,4 +11,5 @@ import UIKit
 
 class PhotoTableViewCell: UITableViewCell {
     @IBOutlet weak var thumbnail: UIImageView!
+    @IBOutlet weak var comment: UILabel!
 }

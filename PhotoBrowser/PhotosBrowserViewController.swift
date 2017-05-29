@@ -232,7 +232,7 @@ extension PhotosBrowserViewController: UICollectionViewDelegateFlowLayout {
         let flickrPhoto = photoForIndexPath(indexPath: indexPath as NSIndexPath)
         var size = collectionView.bounds.size
         size.height -= topLayoutGuide.length
-        size.height -= (cellInsets.top + cellInsets.right)
+        size.height -= (cellInsets.top + cellInsets.bottom)
         size.width -= (cellInsets.left + cellInsets.right)
         return flickrPhoto.sizeToFillWidthOfSize(size)
 

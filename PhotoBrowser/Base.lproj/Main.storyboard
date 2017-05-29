@@ -105,31 +105,41 @@
         <scene sceneID="ZcF-Wf-gs5">
             <objects>
                 <viewController id="rfO-rM-l3i" customClass="PhotosTableViewController" customModule="PhotoBrowser" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="171" sectionHeaderHeight="28" sectionFooterHeight="28" id="jv7-te-fdy">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jv7-te-fdy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PhotoTableViewCell" rowHeight="171" id="it6-tT-n1x" customClass="PhotoTableViewCell" customModule="PhotoBrowser">
-                                <rect key="frame" x="0.0" y="28" width="375" height="171"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PhotoTableViewCell" rowHeight="100" id="it6-tT-n1x" customClass="PhotoTableViewCell" customModule="PhotoBrowser">
+                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="it6-tT-n1x" id="dHW-ug-k9X">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="170.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Acp-8o-Uud">
-                                            <rect key="frame" x="8" y="13" width="359" height="144.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sl6-Y6-L6f">
+                                            <rect key="frame" x="13" y="13" width="349" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ohw-pK-fZA">
+                                            <rect key="frame" x="5" y="38.5" width="365" height="56"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Acp-8o-Uud" secondAttribute="bottom" constant="5" id="VyU-Bg-wKJ"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="Acp-8o-Uud" secondAttribute="trailing" id="lpg-0Q-4YG"/>
-                                        <constraint firstItem="Acp-8o-Uud" firstAttribute="top" secondItem="dHW-ug-k9X" secondAttribute="topMargin" constant="5" id="nRE-2h-gyf"/>
-                                        <constraint firstItem="Acp-8o-Uud" firstAttribute="leading" secondItem="dHW-ug-k9X" secondAttribute="leadingMargin" id="qbZ-vt-yCY"/>
+                                        <constraint firstAttribute="bottom" secondItem="ohw-pK-fZA" secondAttribute="bottom" constant="5" id="0iK-Hc-W3a"/>
+                                        <constraint firstItem="Sl6-Y6-L6f" firstAttribute="leading" secondItem="dHW-ug-k9X" secondAttribute="leadingMargin" constant="5" id="GUD-EI-Ljv"/>
+                                        <constraint firstItem="Sl6-Y6-L6f" firstAttribute="top" secondItem="dHW-ug-k9X" secondAttribute="topMargin" constant="5" id="InC-3P-Rn5"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Sl6-Y6-L6f" secondAttribute="trailing" constant="5" id="YxP-XC-mlU"/>
+                                        <constraint firstAttribute="trailing" secondItem="ohw-pK-fZA" secondAttribute="trailing" constant="5" id="ajA-Cw-9Xb"/>
+                                        <constraint firstItem="ohw-pK-fZA" firstAttribute="top" secondItem="Sl6-Y6-L6f" secondAttribute="bottom" constant="5" id="vEG-gy-HDF"/>
+                                        <constraint firstItem="ohw-pK-fZA" firstAttribute="leading" secondItem="dHW-ug-k9X" secondAttribute="leading" constant="5" id="wg1-i1-wKu"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="thumbnail" destination="Acp-8o-Uud" id="YVh-bn-Zyl"/>
+                                    <outlet property="comment" destination="Sl6-Y6-L6f" id="bXr-xa-2dQ"/>
+                                    <outlet property="thumbnail" destination="ohw-pK-fZA" id="6F8-nz-PP4"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
