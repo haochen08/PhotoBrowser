@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nuB-WF-62S">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nuB-WF-62S">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,7 +14,7 @@
         <scene sceneID="ghT-1M-nFL">
             <objects>
                 <collectionViewController id="8Rr-lj-XAN" customClass="PhotosBrowserViewController" customModule="PhotoBrowser" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="qok-Xx-yfM">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="qok-Xx-yfM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -82,7 +82,7 @@
                     <navigationItem key="navigationItem" id="0SF-BR-NCQ">
                         <nil key="title"/>
                         <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" id="FPx-x5-q98">
-                            <rect key="frame" x="112.5" y="7" width="150" height="30"/>
+                            <rect key="frame" x="113" y="7" width="150" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -101,6 +101,98 @@
             </objects>
             <point key="canvasLocation" x="452" y="71"/>
         </scene>
+        <!--Photos Horizontal Table View Controller-->
+        <scene sceneID="ohN-Lp-zG9">
+            <objects>
+                <viewController id="GCr-23-HeM" customClass="PhotosHorizontalTableViewController" customModule="PhotoBrowser" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="a02-TL-a5P">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PhotoHorizontalTableViewCell" id="Smz-xg-hOX" customClass="PhotoHorizontalTableViewCell" customModule="PhotoBrowser">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Smz-xg-hOX" id="Pfr-TG-hgs">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="E3n-B8-pSN" customClass="PhotoHorizontalCollectionView" customModule="PhotoBrowser">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Abm-76-gi8">
+                                                <size key="itemSize" width="50" height="50"/>
+                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            </collectionViewFlowLayout>
+                                            <cells>
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoHorizontalCollectionViewCell" id="AV6-dd-jib" customClass="PhotoHorizontalCollectionViewCell" customModule="PhotoBrowser">
+                                                    <rect key="frame" x="0.0" y="-4" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="drb-p4-9yd">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                    </view>
+                                                    <constraints>
+                                                        <constraint firstItem="drb-p4-9yd" firstAttribute="leading" secondItem="AV6-dd-jib" secondAttribute="leading" id="8go-qh-R0l"/>
+                                                        <constraint firstAttribute="trailing" secondItem="drb-p4-9yd" secondAttribute="trailing" id="HmN-aS-gDr"/>
+                                                        <constraint firstAttribute="bottom" secondItem="drb-p4-9yd" secondAttribute="bottom" id="XeG-PG-ar0"/>
+                                                        <constraint firstItem="drb-p4-9yd" firstAttribute="top" secondItem="AV6-dd-jib" secondAttribute="top" id="cmn-kY-oJC"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <outlet property="thumbnail" destination="drb-p4-9yd" id="FP1-DE-hMI"/>
+                                                    </connections>
+                                                </collectionViewCell>
+                                            </cells>
+                                            <connections>
+                                                <outlet property="dataSource" destination="GCr-23-HeM" id="LhS-HZ-2qR"/>
+                                            </connections>
+                                        </collectionView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="E3n-B8-pSN" secondAttribute="trailing" id="CwH-pi-dJ2"/>
+                                        <constraint firstAttribute="bottom" secondItem="E3n-B8-pSN" secondAttribute="bottom" id="XS9-qm-KTd"/>
+                                        <constraint firstItem="E3n-B8-pSN" firstAttribute="leading" secondItem="Pfr-TG-hgs" secondAttribute="leading" id="i0R-NB-KoM"/>
+                                        <constraint firstItem="E3n-B8-pSN" firstAttribute="top" secondItem="Pfr-TG-hgs" secondAttribute="top" id="wiE-8X-1Kf"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="collectionView" destination="E3n-B8-pSN" id="n55-4Y-jDY"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="GCr-23-HeM" id="S7N-aO-bXL"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="N8M-IT-W6h">
+                        <nil key="title"/>
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" id="CkZ-Ss-BEE">
+                            <rect key="frame" x="113" y="7" width="150" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="GCr-23-HeM" id="bb9-kT-1qv"/>
+                            </connections>
+                        </textField>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="searchTextField" destination="CkZ-Ss-BEE" id="fex-H9-wcu"/>
+                        <outlet property="tableView" destination="a02-TL-a5P" id="66I-Cm-xki"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xhh-34-kbN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1263" y="766"/>
+        </scene>
         <!--Photos Table View Controller-->
         <scene sceneID="ZcF-Wf-gs5">
             <objects>
@@ -118,13 +210,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sl6-Y6-L6f">
-                                            <rect key="frame" x="13" y="13" width="349" height="20.5"/>
+                                            <rect key="frame" x="13" y="13" width="349" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ohw-pK-fZA">
-                                            <rect key="frame" x="5" y="38.5" width="365" height="56"/>
+                                            <rect key="frame" x="5" y="39" width="365" height="56"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -151,7 +243,7 @@
                     <navigationItem key="navigationItem" id="YVa-Im-5Lx">
                         <nil key="title"/>
                         <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" id="Ace-7f-BHr">
-                            <rect key="frame" x="112.5" y="7" width="150" height="30"/>
+                            <rect key="frame" x="113" y="7" width="150" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -168,7 +260,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9AL-NW-Ryn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="448.80000000000001" y="732.68365817091455"/>
+            <point key="canvasLocation" x="313" y="760"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="FrP-U9-uXD">
@@ -196,10 +288,19 @@
                                     <segue destination="rfO-rM-l3i" kind="show" id="fUu-v4-Urf"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLK-Nw-51W">
+                                <rect key="frame" x="117" y="494" width="140" height="30"/>
+                                <state key="normal" title="HorizontalTableView"/>
+                                <connections>
+                                    <segue destination="GCr-23-HeM" kind="show" id="S6D-0o-3Ba"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="vLK-Nw-51W" firstAttribute="centerX" secondItem="QYG-qG-cwW" secondAttribute="centerX" id="1Qx-AT-gWH"/>
                             <constraint firstItem="QYG-qG-cwW" firstAttribute="centerX" secondItem="J9z-Fa-uZX" secondAttribute="centerX" id="H06-Wg-cpx"/>
+                            <constraint firstItem="vLK-Nw-51W" firstAttribute="top" secondItem="QYG-qG-cwW" secondAttribute="bottom" constant="100" id="RKr-Gq-l1P"/>
                             <constraint firstItem="QYG-qG-cwW" firstAttribute="top" secondItem="0kf-I5-Mu4" secondAttribute="bottom" constant="110" id="Tsj-3L-Sez"/>
                             <constraint firstItem="0kf-I5-Mu4" firstAttribute="top" secondItem="jk7-ZZ-mBs" secondAttribute="bottom" constant="160" id="dP3-dW-X43"/>
                             <constraint firstItem="0kf-I5-Mu4" firstAttribute="centerX" secondItem="J9z-Fa-uZX" secondAttribute="centerX" id="qq0-Zb-Xjf"/>

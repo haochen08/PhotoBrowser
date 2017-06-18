@@ -14,9 +14,12 @@ class PhotosTableViewController: UIViewController, UITableViewDelegate, UITableV
     fileprivate let reuseIdentifier = "PhotoTableViewCell"
     fileprivate var searches = [FlickrSearchResults]()
     fileprivate let flickr = Flickr()
+    fileprivate var searchPage = 1
+    fileprivate var searchItem: String!
     
     @IBOutlet weak var searchTextField: UITextField!
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
+    var refreshView: RefreshView!
     
     
     override func viewDidLoad() {
@@ -25,6 +28,10 @@ class PhotosTableViewController: UIViewController, UITableViewDelegate, UITableV
         // Key code
         // It seems the value here does not matter
         tableView.estimatedRowHeight = 30
+        
+        let frame = CGRect.init(x: 0, y: 0, width: tableView.bounds.width, height: 150.0)
+        refreshView = RefreshView.init(frame: frame, delegate: self)
+        view.insertSubview(refreshView, at: 0)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -42,8 +49,37 @@ class PhotosTableViewController: UIViewController, UITableViewDelegate, UITableV
         cell.comment.text = labelText[Int(rand_index)]
         return cell
     }
+    
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        refreshView.scrollViewWillEndDragging(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
+    }
 }
 
+extension PhotosTableViewController : RefreshViewDelegate {
+    func refreshViewDidRefresh() {
+        flickr.searchFlickrForTerm(searchItem, searchPage: searchPage) { (results, error) in
+            self.refreshView.endRefreshing(self.view as! UIScrollView)
+            
+            if let error = error {
+                print("error in searching: \(error)")
+                return
+            }
+            
+            if let results = results {
+                guard let index = self.searches.index(where: {$0.searchTerm == self.searchItem})else {
+                    return
+                }
+                
+                self.searches[index].searchResults.insert(contentsOf: results.searchResults, at: 0)
+                
+                self.tableView?.reloadData()
+                
+                self.searchPage += 1
+            }
+        }
+    }
+}
 
 extension PhotosTableViewController : UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -52,7 +88,7 @@ extension PhotosTableViewController : UITextFieldDelegate {
         spinner.frame = textField.bounds
         spinner.startAnimating()
         
-        flickr.searchFlickrForTerm(textField.text!, searchPage: 0) { (results, error) in
+        flickr.searchFlickrForTerm(textField.text!, searchPage: searchPage) { (results, error) in
             spinner.removeFromSuperview()
             spinner.stopAnimating()
             
@@ -65,9 +101,12 @@ extension PhotosTableViewController : UITextFieldDelegate {
                 self.searches.insert(results, at: 0)
                 
                 self.tableView?.reloadData()
+                
+                self.searchPage += 1
             }
         }
         
+        searchItem = textField.text
         textField.text = nil
         textField.resignFirstResponder()
         return true
